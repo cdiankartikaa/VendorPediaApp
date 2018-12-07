@@ -16,6 +16,13 @@ export class MyApp {
   about = 'AboutPage';
   signIn = 'SignInPage';
   signup = 'SignUpPage'
+  splashScreen = 'SplashScreen';
+
+  showSplash = true; //show animation
+
+  
+
+
   @ViewChild('sideMenu') nav: NavController;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private menuCtrl:MenuController) {
@@ -30,10 +37,11 @@ export class MyApp {
     firebase.initializeApp(config);
 
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+    
       statusBar.styleDefault();
-      splashScreen.hide();
+      splashScreen.hide(); //hide static image
+
+      TimeRanges(3000).subscribe(() => this.showSplash = false) //hide animation
     });
   }
 
